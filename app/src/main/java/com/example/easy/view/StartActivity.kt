@@ -1,6 +1,7 @@
 package com.example.easy.view
 
 import android.Manifest
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -13,6 +14,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.easy.R
 import com.example.easy.application.App
+
 
 class StartActivity : AppCompatActivity() {
     companion object {
@@ -60,11 +62,11 @@ class StartActivity : AppCompatActivity() {
             for (i in grantResults.indices.reversed()) {
                 if (PackageManager.PERMISSION_GRANTED == grantResults[i]) {
                     mMissPermission.remove(permissions[i])
-                    Log.d(TAG, "onRequestPermissionsResult: "+permissions[i])
+                    Log.d(TAG, "onRequestPermissionsResult: " + permissions[i])
                 }
             }
         }
-        Log.d(TAG, "onRequestPermissionsResult: "+ mMissPermission)
+        Log.d(TAG, "onRequestPermissionsResult: $mMissPermission")
         if (mMissPermission.isNotEmpty()) {
             Toast.makeText(
                 this@StartActivity,
@@ -79,7 +81,6 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "onCreate:" + System.currentTimeMillis())
         setContentView(R.layout.activity_start)
-        App.setWindowsFullScreen(this@StartActivity)
         if (isVersionGreaterM()) {
             checkAndRequestPermission()
         }
@@ -93,6 +94,18 @@ class StartActivity : AppCompatActivity() {
 
     fun startCameraActivity(view: View) {
         Log.d(TAG, "startCameraActivity: on click btn")
-        startActivity(Intent(this@StartActivity,CameraActivity::class.java))
+        startActivity(Intent(this@StartActivity, CameraActivity::class.java))
+    }
+
+    fun onClickChoosePreviewScale(view: View) {
+        val scaleList = arrayOf("Scale Height", "Scale Weigth")
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.act_btn_preview_scale)
+        builder.setItems(scaleList) { dialogInterface, i ->
+            dialogInterface.dismiss()
+            App.isPreviewScaleHeight = (i == 0)
+            Toast.makeText(this, scaleList[i], Toast.LENGTH_SHORT).show()
+        }
+        builder.setNegativeButton("cancel", null).show()
     }
 }

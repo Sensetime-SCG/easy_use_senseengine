@@ -1,0 +1,72 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    compileSdk projCompileSdk
+
+    defaultConfig {
+        applicationId "com.example.easy"
+        minSdk projMinSdk
+        targetSdk projTargetSdk
+        versionCode projVersionCode
+        versionName projVersionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility projSourceCompatibility
+        targetCompatibility projTargetCompatibility
+    }
+    lint {
+          baseline = file("lint-baseline.xml")
+          abortOnError true
+    }
+    kotlinOptions {
+        jvmTarget = projJvmTarget
+    }
+}
+
+dependencies {
+    def copyDepBeforeRun = {
+        proj,variant->
+            copy {
+                def folder = new File(getRootDir().toString(),proj)
+                if(folder.exists()){
+                    println("exist: "+proj)
+                    implementation project(":"+proj)
+                } else {
+                    if(System.properties['os.name'].toLowerCase().contains('windows')){
+                        from(getRootDir().toString()+'\\aar\\'+proj + '-'+variant+'.aar')
+                        into(getProjectDir().toString()+"\\libs")
+                    }else{
+                        from(getRootDir().toString()+'/aar/'+proj+'-'+variant+'.aar')
+                        into(getProjectDir().toString() + "/libs")
+                    }
+                    rename {
+                        proj+'.aar'
+                    }
+//                    implementation(name:proj, ext:'aar')
+                }
+            }
+            return proj
+    }
+
+    copyDepBeforeRun("libuvccamera","debug")
+    implementation fileTree(include: ['*.aar'], dir: 'libs')
+
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}

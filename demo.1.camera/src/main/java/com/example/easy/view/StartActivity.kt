@@ -92,12 +92,13 @@ class StartActivity : AppCompatActivity() {
         //do something.
     }
 
-    fun startCameraActivity(view: View) {
-        Log.d(TAG, "startCameraActivity: on click btn")
+    fun onClickStartCameraActivity(view: View) {
+        Log.d(TAG, "onClickStartCameraActivity: view: $view")
         startActivity(Intent(this@StartActivity, CameraActivity::class.java))
     }
 
     fun onClickChoosePreviewScale(view: View) {
+        Log.d(TAG, "onClickChoosePreviewScale: view: $view")
         val scaleList = arrayOf("Scale Height", "Scale Weigth")
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         builder.setTitle(R.string.act_btn_preview_scale)

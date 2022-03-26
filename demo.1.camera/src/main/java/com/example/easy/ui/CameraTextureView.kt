@@ -57,8 +57,8 @@ class CameraTextureView @JvmOverloads constructor(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        var measureWidth: Int = 0
-        var measureHeight: Int = 0
+        var measureWidth: Int
+        var measureHeight: Int
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.R) {
             val size = getDeviceScreenRealSize(context)
             if (App.isPreviewScaleHeight) {

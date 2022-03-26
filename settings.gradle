@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "easy"
-include ':app'
+include ':demo.1.camera'

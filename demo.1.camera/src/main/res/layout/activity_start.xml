@@ -25,7 +25,7 @@
         android:id="@+id/activity_btn_open_camera"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:onClick="startCameraActivity"
+        android:onClick="onClickStartCameraActivity"
         android:text="@string/act_btn_open_btn"
         android:textSize="9pt"
         app:layout_constraintBottom_toBottomOf="parent"

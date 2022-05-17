@@ -11,8 +11,8 @@ project.ext {
     projMinSdk = 21
     projVersionCode = 1
     projVersionName = "1.0"
-    projSourceCompatibility = JavaVersion.VERSION_1_8
-    projTargetCompatibility = JavaVersion.VERSION_1_8
+    projSourceCompatibility = JavaVersion.VERSION_11
+    projTargetCompatibility = JavaVersion.VERSION_11
     projJvmTarget = "1.8"
 }
 

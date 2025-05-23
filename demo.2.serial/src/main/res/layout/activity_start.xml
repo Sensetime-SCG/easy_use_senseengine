@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/activity_textview_info"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="bottom"
+        android:background="@color/text_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintWidth_percent="1" />
+
+    <Button
+        android:id="@+id/activity_btn_conn_dev"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:onClick="onClickStartCameraActivity"
+        android:text="@string/act_btn_open_btn"
+        android:textSize="5pt"
+        app:layout_constraintTop_toBottomOf="@id/activity_textview_info"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintWidth_percent="0.22"
+        tools:ignore="UsingOnClickInXml"
+        />
+
+    <Button
+        android:id="@+id/activity_btn_get_dev_info"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/act_btn_get_dev_info"
+        android:textSize="5pt"
+        app:layout_constraintTop_toBottomOf="@+id/activity_btn_conn_dev"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHeight_percent="0.06"
+        app:layout_constraintWidth_percent="0.22"
+        tools:ignore="UsingOnClickInXml"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

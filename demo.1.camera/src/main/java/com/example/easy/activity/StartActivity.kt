@@ -1,4 +1,4 @@
-package com.example.easy.view
+package com.example.easy.activity
 
 import android.Manifest
 import android.app.AlertDialog

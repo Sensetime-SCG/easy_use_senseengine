@@ -1,4 +1,4 @@
-package com.example.easy.ui
+package com.example.easy.view
 
 import android.content.Context
 import android.os.Build

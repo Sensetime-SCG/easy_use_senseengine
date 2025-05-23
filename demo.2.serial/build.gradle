@@ -28,7 +28,7 @@ android {
     }
     lint {
           baseline = file("lint-baseline.xml")
-//          abortOnError true
+          abortOnError true
     }
     kotlinOptions {
         jvmTarget = projJvmTarget
@@ -39,7 +39,7 @@ android {
 }
 
 dependencies {
-    copyDepBeforeRun("libuvccamera",projCopyDepType)
+    copyDepBeforeRun("libmtc",projCopyDepType)
     implementation fileTree(include: ['*.aar'], dir: 'libs')
 
     implementation "androidx.core:core-ktx:${projDepAndroidXCoreVersion}"

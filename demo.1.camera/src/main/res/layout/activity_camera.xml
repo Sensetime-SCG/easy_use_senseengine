@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.CameraActivity">
+    tools:context=".activity.CameraActivity">
 
-    <com.example.easy.ui.CameraTextureView
+    <com.example.easy.view.CameraTextureView
         android:id="@+id/camera_act_camera_textureview"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

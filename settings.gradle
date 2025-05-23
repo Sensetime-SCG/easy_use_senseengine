@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "easy"
 include ':demo.1.camera'
+include ':demo.2.serial'

@@ -1,22 +1,23 @@
-package com.example.easy.view
+package com.example.easy.activity
 
 import android.graphics.SurfaceTexture
 import android.hardware.usb.UsbDevice
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.easy.R
 import com.example.easy.application.App
-import com.example.easy.ui.CameraTextureView
+import com.example.easy.view.CameraTextureView
 import com.serenegiant.usb.USBMonitor
 import com.serenegiant.usb.UVCCamera
 
 class CameraActivity : AppCompatActivity() {
     companion object {
         private const val TAG = "CameraActivity"
-        private const val USB_DEVICE_VID = 0x12D1 //SenseEngine M20(s) VID
-        private const val USB_DEVICE_PID = 0x4321 //SenseEngine M20(s) PID
+        private const val USB_DEVICE_VID:Int = 0x12D1 //SenseEngine M20(s) VID
+        private const val USB_DEVICE_PID:Int = 0x4321 //SenseEngine M20(s) PID
 
         private var mUsbMonitor: USBMonitor? = null
         private var mUvcCamera: UVCCamera? = null
@@ -40,6 +41,7 @@ class CameraActivity : AppCompatActivity() {
 
     private val mOnDeviceConnectListener = object :
         USBMonitor.OnDeviceConnectListener {
+        @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onAttach(device: UsbDevice) {
             Log.d(TAG, "onAttach: " + device.productName + " ," + System.currentTimeMillis())
             requestUsbDevicePermissions()
@@ -79,7 +81,7 @@ class CameraActivity : AppCompatActivity() {
             val st: SurfaceTexture = mCameraTextureView?.surfaceTexture ?: return
             mUvcCamera!!.setPreviewTexture(st)
             mUvcCamera!!.setFrameCallback(
-                { frame_type, frame, verifyResultBuffer ->
+                { _, _, verifyResultBuffer ->
                     if (verifyResultBuffer != null && verifyResultBuffer.capacity() > 0) {
                         Log.d(TAG, "onVerifyFrame: $verifyResultBuffer")
                     }
